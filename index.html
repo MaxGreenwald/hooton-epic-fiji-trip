@@ -168,11 +168,28 @@
     font-weight: 600;
   }
 
+  .host {
+    margin-bottom: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .host-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    box-shadow: 0 4px 20px rgba(10, 61, 79, 0.15);
+    border: 3px solid rgba(255, 255, 255, 0.8);
+  }
+
   .hosted-by {
     font-weight: 300;
     font-size: 0.9rem;
     color: #1a6b7d;
-    margin-bottom: 56px;
   }
 
   .hosted-by strong {
@@ -409,7 +426,10 @@
     </div>
   </div>
 
-  <p class="hosted-by">Organized by <strong>Claude Hooton</strong></p>
+  <div class="host">
+    <img class="host-photo" src="claude-surfing.png" alt="Claude Hooton surfing">
+    <p class="hosted-by">Your host, <strong>Claude Hooton</strong></p>
+  </div>
 
   <!-- VIDEO SECTION -->
   <div class="divider"></div>
