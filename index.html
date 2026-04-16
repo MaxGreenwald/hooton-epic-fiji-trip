@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Namotu Fiji Countdown</title>
+<title>Hooton Epic Fiji Trip - Namotu Countdown</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
 
@@ -11,15 +11,14 @@
 
   body {
     font-family: 'Outfit', sans-serif;
-    min-height: 100vh;
     background: linear-gradient(180deg, #e0f4ff 0%, #b8e6f9 30%, #7dd3e8 60%, #1a9bb5 100%);
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding: 24px;
-    overflow: hidden;
     position: relative;
+    min-height: 100vh;
   }
 
   /* Animated wave layers */
@@ -65,17 +64,20 @@
     50% { transform: translateX(-40px); }
   }
 
+  /* Content wrapper */
   .content {
     position: relative;
     z-index: 1;
     text-align: center;
-    max-width: 600px;
+    max-width: 700px;
     width: 100%;
+    padding-bottom: 220px;
   }
 
   .surfboard {
     font-size: 56px;
     margin-bottom: 8px;
+    margin-top: 40px;
     animation: bob 3s ease-in-out infinite;
   }
 
@@ -135,7 +137,7 @@
     display: block;
   }
 
-  .details {
+  .trip-details {
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(12px);
     border-radius: 16px;
@@ -170,6 +172,7 @@
     font-weight: 300;
     font-size: 0.9rem;
     color: #1a6b7d;
+    margin-bottom: 56px;
   }
 
   .hosted-by strong {
@@ -177,17 +180,152 @@
     color: #0a3d4f;
   }
 
+  /* Sections */
+  .section {
+    margin-bottom: 48px;
+    text-align: left;
+  }
+
+  .section-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #0a3d4f;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .section-subtitle {
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: #1a6b7d;
+    text-align: center;
+    margin-top: -14px;
+    margin-bottom: 24px;
+  }
+
+  /* Video */
+  .video-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(10, 61, 79, 0.15);
+    aspect-ratio: 16 / 9;
+    background: #0a3d4f;
+  }
+
+  .video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* Photo grid */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .photo-grid .wide {
+    grid-column: 1 / -1;
+  }
+
+  .photo-card {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(10, 61, 79, 0.12);
+    position: relative;
+    background: #0a3d4f;
+  }
+
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .photo-card:hover img {
+    transform: scale(1.03);
+  }
+
+  .photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 14px;
+    background: linear-gradient(transparent, rgba(10, 61, 79, 0.7));
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+
+  /* Activities */
+  .activities-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .activity-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    border-radius: 14px;
+    padding: 20px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+
+  .activity-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .activity-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .activity-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #0a3d4f;
+    margin-bottom: 4px;
+  }
+
+  .activity-desc {
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: #1a6b7d;
+    line-height: 1.4;
+  }
+
+  /* Divider */
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: rgba(10, 61, 79, 0.15);
+    border-radius: 2px;
+    margin: 0 auto 48px;
+  }
+
   /* Mobile */
   @media (max-width: 480px) {
     h1 { font-size: 1.7rem; }
     .subtitle { font-size: 0.95rem; margin-bottom: 24px; }
-    .surfboard { font-size: 44px; }
+    .surfboard { font-size: 44px; margin-top: 20px; }
     .countdown { gap: 10px; }
     .unit { min-width: 68px; padding: 16px 8px; }
     .number { font-size: 2.2rem; }
     .label { font-size: 0.65rem; }
-    .details { padding: 16px 20px; }
+    .trip-details { padding: 16px 20px; }
     .detail-row { font-size: 0.85rem; }
+    .section-title { font-size: 1.3rem; }
+    .activities-grid { grid-template-columns: 1fr; }
+    .photo-grid { grid-template-columns: 1fr; }
+    .photo-grid .wide { grid-column: 1; }
   }
 </style>
 </head>
@@ -196,7 +334,7 @@
 <div class="content">
   <div class="surfboard">🏄‍♂️</div>
   <h1>Namotu Island, Fiji</h1>
-  <p class="subtitle">Family & friends trip</p>
+  <p class="subtitle">The Hooton Epic Fiji Trip</p>
 
   <div class="countdown" id="countdown">
     <div class="unit">
@@ -217,7 +355,7 @@
     </div>
   </div>
 
-  <div class="details">
+  <div class="trip-details">
     <div class="detail-row">
       <span class="detail-label">Destination</span>
       <span class="detail-value">Namotu Island</span>
@@ -233,6 +371,100 @@
   </div>
 
   <p class="hosted-by">Organized by <strong>Claude Hooton</strong></p>
+
+  <!-- VIDEO SECTION -->
+  <div class="divider"></div>
+  <div class="section">
+    <h2 class="section-title">Namotu Paradise</h2>
+    <p class="section-subtitle">A taste of what's waiting for us</p>
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/zrL-nTIEIM8?start=16"
+        title="Namotu Paradise"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+
+  <!-- PHOTO SECTION -->
+  <div class="divider"></div>
+  <div class="section">
+    <h2 class="section-title">The Island</h2>
+    <p class="section-subtitle">A private island paradise in the Mamanuca chain</p>
+    <div class="photo-grid">
+      <div class="photo-card wide" style="height: 280px;">
+        <img src="https://images.unsplash.com/photo-1509233725247-49e657c54213?w=900&q=80" alt="Fiji crystal clear waters and reef">
+        <div class="photo-caption">Crystal clear reef breaks</div>
+      </div>
+      <div class="photo-card" style="height: 200px;">
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&q=80" alt="Surfing a wave">
+        <div class="photo-caption">World-class surf</div>
+      </div>
+      <div class="photo-card" style="height: 200px;">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80" alt="Tropical beach at sunset">
+        <div class="photo-caption">Golden hour on the sand</div>
+      </div>
+      <div class="photo-card" style="height: 200px;">
+        <img src="https://images.unsplash.com/photo-1582967788606-a171c7f0e3e5?w=500&q=80" alt="Fiji palm trees and turquoise water">
+        <div class="photo-caption">Turquoise lagoon vibes</div>
+      </div>
+      <div class="photo-card" style="height: 200px;">
+        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500&q=80" alt="Tropical sunset over ocean">
+        <div class="photo-caption">Sunsets like nowhere else</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THINGS TO DO -->
+  <div class="divider"></div>
+  <div class="section">
+    <h2 class="section-title">Things To Do</h2>
+    <p class="section-subtitle">No shortage of ways to fill the days</p>
+    <div class="activities-grid">
+      <div class="activity-card">
+        <div class="activity-icon">🌊</div>
+        <div class="activity-name">Surf Cloudbreak</div>
+        <div class="activity-desc">One of the most famous left-hand reef breaks on the planet, right off the island</div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🤿</div>
+        <div class="activity-name">Snorkel & Dive</div>
+        <div class="activity-desc">Pristine coral reefs teeming with tropical fish, sea turtles, and manta rays</div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🎣</div>
+        <div class="activity-name">Deep Sea Fishing</div>
+        <div class="activity-desc">Chase yellowfin tuna, mahi-mahi, and wahoo in the deep blue</div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🚤</div>
+        <div class="activity-name">Boat Trips</div>
+        <div class="activity-desc">Island-hop through the Mamanucas, visit Castaway Island and Cloud 9</div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🏐</div>
+        <div class="activity-name">Beach Volleyball</div>
+        <div class="activity-desc">Sandy court right on the beach for crew vs. crew tournaments</div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🌅</div>
+        <div class="activity-name">Kava Sunsets</div>
+        <div class="activity-desc">Traditional Fijian kava ceremony while watching the sun melt into the Pacific</div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🛶</div>
+        <div class="activity-name">Kayak & SUP</div>
+        <div class="activity-desc">Paddle around the island through calm turquoise lagoon waters</div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🍽️</div>
+        <div class="activity-name">Fresh Feasts</div>
+        <div class="activity-desc">Freshly caught seafood, lovo earth oven meals, and tropical fruits daily</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <div class="waves">
