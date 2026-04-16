@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Namotu Fiji Countdown</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #e0f4ff 0%, #b8e6f9 30%, #7dd3e8 60%, #1a9bb5 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Animated wave layers */
+  .waves {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wave {
+    position: absolute;
+    bottom: 0;
+    left: -5%;
+    width: 110%;
+    height: 100%;
+    background-repeat: repeat-x;
+    background-size: 1200px 200px;
+  }
+
+  .wave-1 {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200'%3E%3Cpath fill='%230e7a8f' fill-opacity='0.3' d='M0,80 C200,140 400,20 600,80 C800,140 1000,20 1200,80 L1200,200 L0,200 Z'/%3E%3C/svg%3E");
+    animation: wave-drift 8s ease-in-out infinite;
+  }
+
+  .wave-2 {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200'%3E%3Cpath fill='%230a6577' fill-opacity='0.4' d='M0,100 C300,160 500,40 700,100 C900,160 1100,40 1200,100 L1200,200 L0,200 Z'/%3E%3C/svg%3E");
+    animation: wave-drift 6s ease-in-out infinite reverse;
+    animation-delay: -2s;
+  }
+
+  .wave-3 {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200'%3E%3Cpath fill='%23084f5e' fill-opacity='0.5' d='M0,120 C250,170 450,70 650,120 C850,170 1050,70 1200,120 L1200,200 L0,200 Z'/%3E%3C/svg%3E");
+    animation: wave-drift 10s ease-in-out infinite;
+    animation-delay: -4s;
+  }
+
+  @keyframes wave-drift {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-40px); }
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .surfboard {
+    font-size: 56px;
+    margin-bottom: 8px;
+    animation: bob 3s ease-in-out infinite;
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: #0a3d4f;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    font-weight: 300;
+    font-size: 1.1rem;
+    color: #1a6b7d;
+    margin-bottom: 32px;
+  }
+
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+
+  .unit {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 20px 12px;
+    min-width: 80px;
+    box-shadow: 0 4px 20px rgba(10, 61, 79, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+
+  .number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #0a3d4f;
+    line-height: 1;
+    display: block;
+  }
+
+  .label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #1a6b7d;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 6px;
+    display: block;
+  }
+
+  .details {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 20px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    margin-bottom: 24px;
+  }
+
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 0.95rem;
+    color: #0a3d4f;
+  }
+
+  .detail-row + .detail-row {
+    border-top: 1px solid rgba(10, 61, 79, 0.08);
+  }
+
+  .detail-label {
+    font-weight: 300;
+    color: #1a6b7d;
+  }
+
+  .detail-value {
+    font-weight: 600;
+  }
+
+  .hosted-by {
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: #1a6b7d;
+  }
+
+  .hosted-by strong {
+    font-weight: 600;
+    color: #0a3d4f;
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    h1 { font-size: 1.7rem; }
+    .subtitle { font-size: 0.95rem; margin-bottom: 24px; }
+    .surfboard { font-size: 44px; }
+    .countdown { gap: 10px; }
+    .unit { min-width: 68px; padding: 16px 8px; }
+    .number { font-size: 2.2rem; }
+    .label { font-size: 0.65rem; }
+    .details { padding: 16px 20px; }
+    .detail-row { font-size: 0.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="content">
+  <div class="surfboard">🏄‍♂️</div>
+  <h1>Namotu Island, Fiji</h1>
+  <p class="subtitle">Family & friends trip</p>
+
+  <div class="countdown" id="countdown">
+    <div class="unit">
+      <span class="number" id="days">--</span>
+      <span class="label">Days</span>
+    </div>
+    <div class="unit">
+      <span class="number" id="hours">--</span>
+      <span class="label">Hours</span>
+    </div>
+    <div class="unit">
+      <span class="number" id="minutes">--</span>
+      <span class="label">Min</span>
+    </div>
+    <div class="unit">
+      <span class="number" id="seconds">--</span>
+      <span class="label">Sec</span>
+    </div>
+  </div>
+
+  <div class="details">
+    <div class="detail-row">
+      <span class="detail-label">Destination</span>
+      <span class="detail-value">Namotu Island</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Arrival</span>
+      <span class="detail-value">September 20, 2026</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Crew</span>
+      <span class="detail-value">Hooton Family & Friends</span>
+    </div>
+  </div>
+
+  <p class="hosted-by">Organized by <strong>Claude Hooton</strong></p>
+</div>
+
+<div class="waves">
+  <div class="wave wave-1"></div>
+  <div class="wave wave-2"></div>
+  <div class="wave wave-3"></div>
+</div>
+
+<script>
+  const tripDate = new Date('2026-09-20T00:00:00');
+
+  function update() {
+    const now = new Date();
+    const diff = tripDate - now;
+
+    if (diff <= 0) {
+      document.getElementById('days').textContent = '0';
+      document.getElementById('hours').textContent = '0';
+      document.getElementById('minutes').textContent = '0';
+      document.getElementById('seconds').textContent = '0';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = hours;
+    document.getElementById('minutes').textContent = minutes;
+    document.getElementById('seconds').textContent = seconds;
+  }
+
+  update();
+  setInterval(update, 1000);
+</script>
+
+</body>
+</html>
